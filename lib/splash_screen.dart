@@ -16,7 +16,18 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Container(),
+          Container(
+            decoration: BoxDecoration(
+              color: new Color(0xffffffff),
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color.fromARGB(255, 235, 201, 201),
+                    Color.fromARGB(255, 162, 203, 255),
+                  ]),
+            ),
+          ),
           Align(
             alignment: FractionalOffset.center,
             child: Column(
@@ -25,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Icon(
                   Icons.air,
                   color: Color.fromARGB(255, 84, 104, 221),
-                  size: 70,
+                  size: 100,
                 ),
                 Padding(padding: EdgeInsets.only(top: 15.0)),
                 Text(widget.title),
