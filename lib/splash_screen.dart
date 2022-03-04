@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key, required this.title}) : super(key: key);
@@ -23,8 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color.fromARGB(255, 235, 201, 201),
-                    Color.fromARGB(255, 162, 203, 255),
+                    Color.fromARGB(255, 255, 238, 81),
+                    Color.fromARGB(255, 47, 108, 187),
                   ]),
             ),
           ),
@@ -33,15 +34,28 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.air,
-                  color: Color.fromARGB(255, 84, 104, 221),
-                  size: 100,
+                Image(
+                  image: AssetImage("build/icons/cloud-sun.png"),
                 ),
-                Padding(padding: EdgeInsets.only(top: 15.0)),
-                Text(widget.title),
+                Padding(padding: EdgeInsets.only(top: 10.0)),
+                Text(
+                  widget.title,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 30.0),
+                    color: Color.fromARGB(255, 24, 56, 105),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Padding(padding: EdgeInsets.only(top: 5.0)),
-                Text("Aplikacja do monitorowania \n powietrza"),
+                Text(
+                  "Aplikacja do monitorowania \n powietrza",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                      color: Colors.white),
+                ),
               ],
             ),
           ),
@@ -51,7 +65,13 @@ class _SplashScreenState extends State<SplashScreen> {
               bottom: 50,
               child: Container(
                 alignment: Alignment.center,
-                child: Text("Ladowanie danych...."),
+                child: Text(
+                  "Ladowanie danych....",
+                  style: GoogleFonts.lato(
+                    textStyle: TextStyle(fontSize: 15.0),
+                    color: Color.fromARGB(255, 24, 56, 105),
+                  ),
+                ),
               )),
         ],
       ),
