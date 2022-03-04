@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
 import 'package:pogoda/my_home_page.dart';
@@ -12,29 +13,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        const Duration(seconds: 3),
-        () => {
-              if (havePermission())
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PermissionScreen(),
-                    ),
-                  )
-                }
-              else
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyHomePage(),
-                    ),
-                  )
-                }
-            });
-
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -100,7 +78,26 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  bool havePermission() {
+  bool permissionDenied() {
     return true;
   }
+
+  @override
+  void initState() {
+    super.initState();
+    if (permissionDenied()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PermissionScreen(),
+        ),
+      );
+    } else {
+      SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+        executedOnceAfterBuild();
+      });
+    }
+  }
+
+  void executedOnceAfterBuild() {}
 }
