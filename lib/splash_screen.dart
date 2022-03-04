@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pogoda/main.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -39,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0)),
                 Text(
-                  widget.title,
+                  Strings.appTitle,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                     textStyle: TextStyle(fontSize: 30.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pogoda/permission_screen.dart';
 
 import 'package:pogoda/splash_screen.dart';
 
@@ -11,14 +12,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _title = 'Clean Air';
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: _title,
+      title: Strings.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(title: _title),
+      home: PermissionScreen(),
     );
   }
+}
+
+class Strings {
+  static const String appTitle = "Clean Air";
 }
