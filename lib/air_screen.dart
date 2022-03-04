@@ -23,8 +23,8 @@ class _AirScreenState extends State<AirScreen> {
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Color.fromARGB(255, 173, 233, 188),
-                    Color.fromARGB(255, 67, 175, 116),
+                    Color.fromRGBO(161, 233, 158, 1),
+                    Color.fromARGB(255, 47, 187, 77),
                   ]),
             ),
           ),

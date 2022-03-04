@@ -25,7 +25,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Color.fromARGB(255, 173, 197, 233),
+                    Color.fromARGB(255, 158, 166, 233),
                     Color.fromARGB(255, 47, 108, 187),
                   ]),
             ),
@@ -41,52 +41,124 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 41.0)),
                 Text(
-                  "data",
+                  "Poniedziałek, 04.03.2022 ",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(fontSize: 16),
+                      height: 1.2,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400),
                 ),
                 Padding(padding: EdgeInsets.only(top: 12.0)),
-                Text("14*C"),
-                Text("odczuwalna 14*C"),
+                Text(
+                  "14*C",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(fontSize: 64),
+                      height: 1.2,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 30.0),
+                  child: Text(
+                    "odczuwalna 14*C",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lato(
+                        textStyle: TextStyle(fontSize: 20.0),
+                        height: 1.2,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
                 IntrinsicHeight(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 130,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Text("ciśnienie"),
-                            Padding(
-                              padding: EdgeInsets.only(top: 2.0),
-                            ),
-                            Text("10013 hPa"),
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 130,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                "ciśnienie",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(fontSize: 16.0),
+                                    height: 1.2,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 2.0),
+                              ),
+                              Text(
+                                "10013 hPa",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(fontSize: 20.0),
+                                    height: 1.2,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       VerticalDivider(
                         width: 48.0,
                         thickness: 1.0,
+                        color: Colors.white,
                       ),
-                      Container(
-                        width: 130,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text("wiatr"),
-                            Padding(
-                              padding: EdgeInsets.only(top: 2.0),
-                            ),
-                            Text("16 km/h"),
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 130,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "wiatr",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(fontSize: 16.0),
+                                    height: 1.2,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 2.0),
+                              ),
+                              Text(
+                                "16 km/h",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lato(
+                                    textStyle: TextStyle(fontSize: 20.0),
+                                    height: 1.2,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 24.0),
+                  padding: EdgeInsets.only(top: 48.0),
                 ),
-                Text("opady: 0,1 mm/h"),
+                Text(
+                  "opady: 0,1 mm/h",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(fontSize: 16.0),
+                      height: 1.2,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
                 Padding(
                   padding: EdgeInsets.only(top: 68.0),
                 ),
