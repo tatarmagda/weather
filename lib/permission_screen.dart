@@ -32,11 +32,11 @@ class _PermissionScreenState extends State<PermissionScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  image: AssetImage("build/icons/cloud-sun.png"),
+                  image: AssetImage("build/icons/hand-wave.png"),
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0)),
                 Text(
-                  Strings.appTitle,
+                  "Smacznej kawusi!",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                     textStyle: TextStyle(fontSize: 30.0),
@@ -46,11 +46,11 @@ class _PermissionScreenState extends State<PermissionScreen> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 5.0)),
                 Text(
-                  "Aplikacja do monitorowania \n powietrza",
+                  " ${Strings.appTitle} potrzebuje przyblizonej \n lokalizacji urządzenia",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                          fontSize: 15.0, fontWeight: FontWeight.w600),
                       color: Colors.white),
                 ),
               ],
@@ -59,17 +59,25 @@ class _PermissionScreenState extends State<PermissionScreen> {
           Positioned(
               left: 0,
               right: 0,
-              bottom: 50,
+              bottom: 15,
               child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Ladowanie danych....",
-                  style: GoogleFonts.lato(
-                    textStyle: TextStyle(fontSize: 15.0),
-                    color: Color.fromARGB(255, 24, 56, 105),
-                  ),
-                ),
-              )),
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(left: 40, right: 40.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      child: Text(
+                        "Ustaw przybliżoną lokalizacje",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 24, 56, 105),
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 168, 185, 241)),
+                      onPressed: () {},
+                    ),
+                  ))),
         ],
       ),
     );
