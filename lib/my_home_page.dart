@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pogoda/air_screen.dart';
+import 'package:pogoda/weather_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -6,13 +8,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _currentIndex;
+  var _currentIndex = 0;
+  final screens = [
+    AirScreen(),
+    WeatherScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text("home"),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

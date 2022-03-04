@@ -4,12 +4,12 @@ import 'package:pogoda/main.dart';
 import 'package:pogoda/my_home_page.dart';
 import 'package:pogoda/permission_screen.dart';
 
-class WeatherScreen extends StatefulWidget {
+class AirScreen extends StatefulWidget {
   @override
-  State<WeatherScreen> createState() => _WeatherScreenState();
+  State<AirScreen> createState() => _AirScreenState();
 }
 
-class _WeatherScreenState extends State<WeatherScreen> {
+class _AirScreenState extends State<AirScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 5.0)),
                 Text(
-                  "pogoda",
+                  "jakosc powietrza",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
