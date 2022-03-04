@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
+import 'package:pogoda/my_home_page.dart';
 
 class PermissionScreen extends StatefulWidget {
+  const PermissionScreen({Key? key}) : super(key: key);
+
   @override
   State<PermissionScreen> createState() => _PermissionScreenState();
 }
@@ -15,8 +18,8 @@ class _PermissionScreenState extends State<PermissionScreen> {
         fit: StackFit.expand,
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: new Color(0xffffffff),
+            decoration: const BoxDecoration(
+              color: Color(0xffffffff),
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -31,25 +34,25 @@ class _PermissionScreenState extends State<PermissionScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   image: AssetImage("build/icons/hand-wave.png"),
                 ),
-                Padding(padding: EdgeInsets.only(top: 10.0)),
+                const Padding(padding: EdgeInsets.only(top: 10.0)),
                 Text(
                   "Smacznej kawusi!",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
-                    textStyle: TextStyle(fontSize: 30.0),
-                    color: Color.fromARGB(255, 24, 56, 105),
+                    textStyle: const TextStyle(fontSize: 30.0),
+                    color: const Color.fromARGB(255, 24, 56, 105),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: 5.0)),
+                const Padding(padding: EdgeInsets.only(top: 5.0)),
                 Text(
                   " ${Strings.appTitle} potrzebuje przyblizonej \n lokalizacji urządzenia",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.w600),
                       color: Colors.white),
                 ),
@@ -62,11 +65,11 @@ class _PermissionScreenState extends State<PermissionScreen> {
               bottom: 15,
               child: Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.only(left: 40, right: 40.0),
+                  margin: const EdgeInsets.only(left: 40, right: 40.0),
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         "Ustaw przybliżoną lokalizacje",
                         style: TextStyle(
                           fontSize: 16,
@@ -74,8 +77,16 @@ class _PermissionScreenState extends State<PermissionScreen> {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 168, 185, 241)),
-                      onPressed: () {},
+                          primary: const Color.fromARGB(255, 168, 185, 241)),
+                      onPressed: () {
+// to do ask for permission
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyHomePage(),
+                          ),
+                        );
+                      },
                     ),
                   ))),
         ],
