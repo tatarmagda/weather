@@ -20,10 +20,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
             decoration: BoxDecoration(
               color: new Color(0xffffffff),
               gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
                   colors: [
-                    Color.fromARGB(255, 255, 238, 81),
+                    Color.fromARGB(255, 173, 197, 233),
                     Color.fromARGB(255, 47, 108, 187),
                   ]),
             ),
