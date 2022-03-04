@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
@@ -33,51 +35,66 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Padding(padding: EdgeInsets.only(top: 45.0)),
                 Image(
-                  image: AssetImage("build/icons/cloud-sun.png"),
+                  image: AssetImage("build/icons/weather-sunny.png"),
                 ),
-                Padding(padding: EdgeInsets.only(top: 10.0)),
+                Padding(padding: EdgeInsets.only(top: 41.0)),
                 Text(
-                  Strings.appTitle,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lato(
-                    textStyle: TextStyle(fontSize: 30.0),
-                    color: Color.fromARGB(255, 24, 56, 105),
-                    fontWeight: FontWeight.bold,
+                  "data",
+                ),
+                Padding(padding: EdgeInsets.only(top: 12.0)),
+                Text("14*C"),
+                Text("odczuwalna 14*C"),
+                IntrinsicHeight(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 130,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Text("ciśnienie"),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.0),
+                            ),
+                            Text("10013 hPa"),
+                          ],
+                        ),
+                      ),
+                      VerticalDivider(
+                        width: 48.0,
+                        thickness: 1.0,
+                      ),
+                      Container(
+                        width: 130,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            Text("wiatr"),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.0),
+                            ),
+                            Text("16 km/h"),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: 5.0)),
-                Text(
-                  "pogoda",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                      color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.only(top: 24.0),
+                ),
+                Text("opady: 0,1 mm/h"),
+                Padding(
+                  padding: EdgeInsets.only(top: 68.0),
                 ),
               ],
             ),
           ),
-          Positioned(
-              left: 0,
-              right: 0,
-              bottom: 50,
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Ladowanie danych....",
-                  style: GoogleFonts.lato(
-                    textStyle: TextStyle(fontSize: 15.0),
-                    color: Color.fromARGB(255, 24, 56, 105),
-                  ),
-                ),
-              )),
         ],
       ),
     );
-  }
-
-  bool havePermission() {
-    return true;
   }
 }

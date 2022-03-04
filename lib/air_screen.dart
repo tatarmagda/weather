@@ -20,11 +20,11 @@ class _AirScreenState extends State<AirScreen> {
             decoration: BoxDecoration(
               color: new Color(0xffffffff),
               gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
                   colors: [
-                    Color.fromARGB(255, 96, 201, 96),
-                    Color.fromARGB(255, 174, 240, 178),
+                    Color.fromARGB(255, 173, 233, 188),
+                    Color.fromARGB(255, 67, 175, 116),
                   ]),
             ),
           ),

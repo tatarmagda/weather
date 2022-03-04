@@ -8,7 +8,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _currentIndex = 0;
+  var _currentIndex = 1;
   final screens = [
     AirScreen(),
     WeatherScreen(),
