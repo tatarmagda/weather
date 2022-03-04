@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
+import 'package:pogoda/my_home_page.dart';
+import 'package:pogoda/permission_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -10,6 +12,29 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
+    Future.delayed(
+        const Duration(seconds: 3),
+        () => {
+              if (havePermission())
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PermissionScreen(),
+                    ),
+                  )
+                }
+              else
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyHomePage(),
+                    ),
+                  )
+                }
+            });
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -73,5 +98,9 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+
+  bool havePermission() {
+    return true;
   }
 }
