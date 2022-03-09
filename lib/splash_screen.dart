@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
 import 'package:pogoda/my_home_page.dart';
 import 'package:pogoda/permission_screen.dart';
+import 'package:weather/weather.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -78,26 +81,28 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  bool permissionDenied() {
-    return true;
-  }
-
   @override
   void initState() {
     super.initState();
+
     if (permissionDenied()) {
       Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PermissionScreen(),
-        ),
-      );
+          context, MaterialPageRoute(builder: (context) => SplashScreen()));
     } else {
-      SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+      SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
         executedOnceAfterBuild();
       });
     }
   }
 
-  void executedOnceAfterBuild() {}
+  bool permissionDenied() {
+    return false;
+  }
+
+  void executedOnceAfterBuild() async {
+    WeatherFactory wf = new WeatherFactory("32a8b80c5dc1aa8453402fbb2f2dfde5",
+        language: Language.POLISH);
+    Weather w = await wf.currentWeatherByCityName("Lublin");
+    log(w.toJson().toString());
+  }
 }

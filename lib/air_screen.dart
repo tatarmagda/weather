@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
 import 'package:pogoda/my_home_page.dart';
 import 'package:pogoda/permission_screen.dart';
-import 'package:weather/weather.dart';
 
 class AirScreen extends StatefulWidget {
   @override
@@ -81,31 +77,7 @@ class _AirScreenState extends State<AirScreen> {
     );
   }
 
-  bool PermissionDenied() {
+  bool havePermission() {
     return true;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (PermissionDenied()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PermissionScreen(),
-        ),
-      );
-    } else {
-      SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
-        executedOnceAfterBulid();
-      });
-    }
-  }
-
-  void executedOnceAfterBulid() async {
-    WeatherFactory wf = new WeatherFactory("32a8b80c5dc1aa8453402fbb2f2dfde5",
-        language: Language.POLISH);
-    Weather w = await wf.currentWeatherByCityName("Gdańsk");
-    log(w.toJson().toString());
   }
 }
