@@ -104,5 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
         language: Language.POLISH);
     Weather w = await wf.currentWeatherByCityName("Lublin");
     log(w.toJson().toString());
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MyHomePage(w)));
   }
 }

@@ -2,11 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:pogoda/main.dart';
 import 'package:pogoda/my_home_page.dart';
 import 'package:pogoda/permission_screen.dart';
+import 'package:weather/weather.dart';
 
 class WeatherScreen extends StatefulWidget {
+  WeatherScreen({required this.weather});
+  final Weather weather;
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
 }
@@ -37,11 +41,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
               children: [
                 Padding(padding: EdgeInsets.only(top: 45.0)),
                 Image(
-                  image: AssetImage("build/icons/weather-sunny.png"),
+                  image: AssetImage(
+                      "build/icons/${getIconByMood(widget.weather)}.png"),
                 ),
                 Padding(padding: EdgeInsets.only(top: 41.0)),
                 Text(
-                  "Poniedziałek, 04.03.2022 ",
+                  "${DateFormat.MMMMEEEEd("pl").format(DateTime.now())}, ${widget.weather.weatherDescription} ",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 16),
@@ -51,7 +56,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 12.0)),
                 Text(
-                  "14*C",
+                  "${widget.weather.temperature?.celsius!.floor().toString()}°C",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 64),
@@ -62,7 +67,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 30.0),
                   child: Text(
-                    "odczuwalna 14*C",
+                    "Odczuwalna ${widget.weather.tempFeelsLike?.celsius!.floor().toString()}°C",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(fontSize: 20.0),
@@ -95,7 +100,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 padding: EdgeInsets.only(top: 2.0),
                               ),
                               Text(
-                                "10013 hPa",
+                                "${widget.weather.pressure?.floor().toString()}°C hPa",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
@@ -132,7 +137,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 padding: EdgeInsets.only(top: 2.0),
                               ),
                               Text(
-                                "16 km/h",
+                                "${widget.weather.windSpeed}°C m/s",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
@@ -150,15 +155,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 Padding(
                   padding: EdgeInsets.only(top: 48.0),
                 ),
-                Text(
-                  "opady: 0,1 mm/h",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(fontSize: 16.0),
-                      height: 1.2,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
+                if (widget.weather.rainLastHour != null)
+                  Text(
+                    "opady: ${widget.weather.rainLastHour} mm/1h",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lato(
+                        textStyle: TextStyle(fontSize: 16.0),
+                        height: 1.2,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 Padding(
                   padding: EdgeInsets.only(top: 68.0),
                 ),
@@ -168,5 +174,24 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ],
       ),
     );
+  }
+
+  String getIconByMood(Weather weather) {
+    var main = weather.weatherMain;
+
+    if (main == "Clouds" || main == "Drizzle" || main == "Snow") {
+      return "weather-rain";
+    } else if (main == "Thunderstorm") {
+      return "weather-lightning";
+    } else if (isNIght(weather)) {
+      return 'weather-moonny';
+    } else {
+      return "weather-sunny";
+    }
+  }
+
+  bool isNIght(Weather weather) {
+    return DateTime.now().isAfter(data) ||
+        DateTime.now().isBefore(weather.sunset);
   }
 }
