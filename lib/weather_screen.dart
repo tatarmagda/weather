@@ -26,15 +26,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: new Color(0xffffffff),
-              gradient: LinearGradient(
-                  begin: Alignment.centerRight,
-                  end: Alignment.centerLeft,
-                  colors: [
-                    Color.fromARGB(255, 158, 166, 233),
-                    Color.fromARGB(255, 47, 108, 187),
-                  ]),
-            ),
+                color: new Color(0xffffffff),
+                gradient: getGradientByMood(widget.weather)),
           ),
           Align(
             alignment: FractionalOffset.center,
@@ -201,5 +194,45 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     super.initState();
     initializeDateFormatting();
+  }
+
+  LinearGradient getGradientByMood(Weather weather) {
+    if (main == "Clouds" || main == "Drizzle" || main == "Snow") {
+      return LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromARGB(255, 158, 166, 233),
+          Color.fromARGB(255, 49, 47, 187),
+        ],
+      );
+    } else if (main == "Thunderstorm") {
+      return LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromARGB(255, 0, 0, 0),
+          Color.fromARGB(255, 187, 173, 47),
+        ],
+      );
+    } else if (isNight(weather)) {
+      return LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromARGB(255, 54, 52, 52),
+          Color.fromARGB(255, 0, 0, 0),
+        ],
+      );
+    } else {
+      return LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromARGB(255, 233, 228, 158),
+          Color.fromARGB(255, 47, 108, 187),
+        ],
+      );
+    }
   }
 }
