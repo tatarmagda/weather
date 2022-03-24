@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pogoda/main.dart';
 import 'package:pogoda/my_home_page.dart';
@@ -183,15 +185,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
       return "weather-rain";
     } else if (main == "Thunderstorm") {
       return "weather-lightning";
-    } else if (isNIght(weather)) {
+    } else if (isNight(weather)) {
       return 'weather-moonny';
     } else {
       return "weather-sunny";
     }
   }
 
-  bool isNIght(Weather weather) {
-    return DateTime.now().isAfter(data) ||
-        DateTime.now().isBefore(weather.sunset);
+  bool isNight(Weather weather) {
+    return DateTime.now().isAfter(weather.sunset as DateTime) ||
+        DateTime.now().isBefore(weather.sunrise as DateTime);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting();
   }
 }
