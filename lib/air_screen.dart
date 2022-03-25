@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
 
+import 'splash_screen.dart';
+
 class AirScreen extends StatefulWidget {
+  final AirQuality air;
+
+  AirScreen({required this.air});
+
   @override
   State<AirScreen> createState() => _AirScreenState();
 }

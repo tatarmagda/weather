@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:pogoda/air_screen.dart';
+import 'package:pogoda/splash_screen.dart';
 import 'package:pogoda/weather_screen.dart';
 import 'package:weather/weather.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage(this.weather);
+  MyHomePage(this.weather, this.air);
   final Weather weather;
+  final AirQuality air;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -19,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     screens = [
-      AirScreen(),
+      AirScreen(air: widget.air),
       WeatherScreen(weather: widget.weather),
     ];
     super.initState();
