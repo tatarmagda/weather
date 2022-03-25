@@ -33,15 +33,32 @@ class _AirScreenState extends State<AirScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Jakość powietrza"),
+                Text(
+                  "Jakość powietrza",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(fontSize: 14.0),
+                      height: 1.2,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w700),
+                ),
                 Padding(
                   padding: EdgeInsets.only(top: 2),
                 ),
-                Text("Bardzo dobra"),
+                Text(
+                  "Bardzo dobra",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(fontSize: 28.0),
+                      height: 1.2,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w700),
+                ),
                 Padding(
                   padding: EdgeInsets.only(top: 24),
                 ),
                 CircleAvatar(
+                  backgroundColor: Colors.white,
                   radius: 92,
                   child: Center(
                     child: Container(
@@ -51,11 +68,20 @@ class _AirScreenState extends State<AirScreen> {
                           Text(
                             "45",
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 44),
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(fontSize: 45.0),
+                                height: 1.2,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontWeight: FontWeight.w700),
                           ),
                           Text(
                             "CAQI ⓘ",
                             textAlign: TextAlign.center,
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(fontSize: 14.0),
+                                height: 1.2,
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
@@ -82,7 +108,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 16.0),
                                     height: 1.2,
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 0, 0, 0),
                                     fontWeight: FontWeight.w500),
                               ),
                               Padding(
@@ -94,7 +120,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
                                     height: 1.2,
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 0, 0, 0),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -102,9 +128,9 @@ class _AirScreenState extends State<AirScreen> {
                         ),
                       ),
                       VerticalDivider(
-                        width: 48.0,
+                        width: 0.0,
                         thickness: 1.0,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 0, 0, 0),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -119,7 +145,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 16.0),
                                     height: 1.2,
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 0, 0, 0),
                                     fontWeight: FontWeight.w500),
                               ),
                               Padding(
@@ -131,7 +157,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
                                     height: 1.2,
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 0, 0, 0),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -141,9 +167,17 @@ class _AirScreenState extends State<AirScreen> {
                     ],
                   ),
                 ),
-                Text(
-                  "Stacja pomiarowa",
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    "Stacja pomiarowa",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lato(
+                        textStyle: TextStyle(fontSize: 14.0),
+                        height: 1.2,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 2.0),
@@ -151,6 +185,14 @@ class _AirScreenState extends State<AirScreen> {
                 Text(
                   "Warszawa",
                   textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                      textStyle: TextStyle(fontSize: 18.0),
+                      height: 1.2,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.w900),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 50),
                 ),
               ],
             ),
@@ -168,10 +210,9 @@ class _AirScreenState extends State<AirScreen> {
                     child: Align(
                       alignment: Alignment.topLeft,
                       heightFactor: 1,
-                      child: Image.asset(
-                        "icons/danger-value-negative.png",
-                        scale: 0.9,
-                      ),
+                      child: Image.asset("icons/danger-value-negative.png",
+                          scale: 0.9,
+                          color: Color.fromARGB(255, 226, 221, 221)),
                     ),
                   ),
                   ClipRect(
@@ -204,24 +245,45 @@ class _AirScreenState extends State<AirScreen> {
                       left: 10,
                     ),
                     child: Divider(
-                      height: 10,
+                      height: 40,
                       color: Colors.black,
                       thickness: 1,
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(
-                        right: 10,
-                        bottom: 24,
-                        left: 10,
+                    padding: const EdgeInsets.only(
+                      right: 10,
+                      bottom: 24,
+                      left: 10,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.all(10),
+                        height: 38,
+                        child: IntrinsicHeight(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              alignment: Alignment.center,
+                              image: AssetImage("icons/happy.png"),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                            ),
+                            Text(
+                              "Mój tekst",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        )),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Container(
-                          color: Colors.white,
-                          child: Text("heeeelo"),
-                        ),
-                      )),
+                    ),
+                  ),
                 ],
               ),
             ),
