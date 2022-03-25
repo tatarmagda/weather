@@ -6,8 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pogoda/main.dart';
-import 'package:pogoda/my_home_page.dart';
-import 'package:pogoda/permission_screen.dart';
+
 import 'package:weather/weather.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -36,8 +35,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
               children: [
                 Padding(padding: EdgeInsets.only(top: 45.0)),
                 Image(
-                  image: AssetImage(
-                      "build/icons/${getIconByMood(widget.weather)}.png"),
+                  image:
+                      AssetImage("icons/${getIconByMood(widget.weather)}.png"),
                 ),
                 Padding(padding: EdgeInsets.only(top: 41.0)),
                 Text(
@@ -226,11 +225,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
       );
     } else {
       return LinearGradient(
-        begin: Alignment.centerRight,
-        end: Alignment.centerLeft,
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
         colors: [
-          Color.fromARGB(255, 233, 228, 158),
-          Color.fromARGB(255, 47, 108, 187),
+          Color.fromARGB(255, 8, 87, 190),
+          Color.fromARGB(255, 223, 207, 32),
         ],
       );
     }

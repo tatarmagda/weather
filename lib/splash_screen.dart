@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  image: AssetImage("build/icons/cloud-sun.png"),
+                  image: AssetImage("icons/cloud-sun.png"),
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0)),
                 Text(

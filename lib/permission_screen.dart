@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
-import 'package:pogoda/my_home_page.dart';
+
 import 'package:pogoda/splash_screen.dart';
-import 'package:weather/weather.dart';
-import 'weather_screen.dart';
 
 class PermissionScreen extends StatefulWidget {
   const PermissionScreen({Key? key}) : super(key: key);
@@ -38,7 +36,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Image(
-                  image: AssetImage("build/icons/hand-wave.png"),
+                  image: AssetImage("icons/hand-wave.png"),
                 ),
                 const Padding(padding: EdgeInsets.only(top: 10.0)),
                 Text(

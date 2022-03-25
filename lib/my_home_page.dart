@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_file.dart';
+
 import 'package:pogoda/air_screen.dart';
 import 'package:pogoda/weather_screen.dart';
 import 'package:weather/weather.dart';
@@ -41,10 +41,16 @@ class _MyHomePageState extends State<MyHomePage> {
         iconSize: 30.0,
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.air), label: "powietrze"),
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.wb_sunny_rounded), label: "pogoda"),
+            icon: Image.asset("icons/house.png"),
+            label: "powietrze",
+            activeIcon: Image.asset("icons/house-checked.png"),
+          ),
+          BottomNavigationBarItem(
+              icon: Image.asset("icons/cloud.png"),
+              label: "pogoda",
+              activeIcon: Image.asset("icons/cloud-checked.png")),
         ],
       ),
     );

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
-import 'package:pogoda/my_home_page.dart';
-import 'package:pogoda/permission_screen.dart';
 
 class AirScreen extends StatefulWidget {
   @override
@@ -34,7 +32,7 @@ class _AirScreenState extends State<AirScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  image: AssetImage("build/icons/cloud-sun.png"),
+                  image: AssetImage("icons/cloud-sun.png"),
                 ),
                 Padding(padding: EdgeInsets.only(top: 10.0)),
                 Text(

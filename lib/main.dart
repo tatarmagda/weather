@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pogoda/my_home_page.dart';
-import 'package:pogoda/permission_screen.dart';
 
 import 'package:pogoda/splash_screen.dart';
 
