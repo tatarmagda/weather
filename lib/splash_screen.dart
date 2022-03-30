@@ -64,19 +64,20 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           Positioned(
-              left: 0,
-              right: 0,
-              bottom: 50,
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  "Ladowanie danych....",
-                  style: GoogleFonts.lato(
-                    textStyle: TextStyle(fontSize: 15.0),
-                    color: Color.fromARGB(255, 24, 56, 105),
-                  ),
+            left: 0,
+            right: 0,
+            bottom: 50,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Ladowanie danych....",
+                style: GoogleFonts.lato(
+                  textStyle: TextStyle(fontSize: 15.0),
+                  color: Color.fromARGB(255, 24, 56, 105),
                 ),
-              )),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -136,28 +137,28 @@ class AirQuality {
   String quality = "";
   String advice = "";
   int aqi = 0;
-  int pn25 = 0;
-  int pn10 = 0;
+  int pm25 = 0;
+  int pm10 = 0;
   String station = "";
 
   AirQuality(Map<String, dynamic> jsonBody) {
     aqi = int.tryParse(jsonBody["data"]["aqi"].toString()) ?? -1;
-    pn25 =
-        int.tryParse(jsonBody["data"]["iaqi"]["pm25"]["71"].toString()) ?? -1;
-    pn10 =
-        int.tryParse(jsonBody["data"]["iaqi"]["pm10"]["71"].toString()) ?? -1;
+    pm25 = int.tryParse(jsonBody["data"]["iaqi"]["pm25"]["v"].toString()) ?? -1;
+    pm10 = int.tryParse(jsonBody["data"]["iaqi"]["pm10"]["v"].toString()) ?? -1;
     station = jsonBody["data"]["city"]["name"].toString();
 
     setUpLevel(aqi);
   }
 
   void setUpLevel(int aqi) {
-    if (aqi <= 180) {
+    if (aqi <= 100) {
       quality = "Bardzo dobra";
       advice = "Skorzystaj z dobrego powietrza!";
+      isgood = true;
     } else if (aqi <= 150) {
       quality = "Średnio";
       advice = "Jeśli możesz zostań z domu";
+      isBad = true;
     } else {
       quality = "Bardzo źle";
       advice = "Zostań w domu!";

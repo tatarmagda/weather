@@ -46,7 +46,7 @@ class _AirScreenState extends State<AirScreen> {
                   padding: EdgeInsets.only(top: 2),
                 ),
                 Text(
-                  "Bardzo dobra",
+                  widget.air.quality,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 28.0),
@@ -66,12 +66,12 @@ class _AirScreenState extends State<AirScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "45",
+                            (widget.air.aqi / 200 * 100).floor().toString(),
                             textAlign: TextAlign.center,
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(fontSize: 45.0),
                                 height: 1.2,
-                                color: getBackgroundTextCOlor(widget.air),
+                                color: Colors.black,
                                 fontWeight: FontWeight.w700),
                           ),
                           Text(
@@ -80,7 +80,7 @@ class _AirScreenState extends State<AirScreen> {
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(fontSize: 14.0),
                                 height: 1.2,
-                                color: getBackgroundTextCOlor(widget.air),
+                                color: Colors.black,
                                 fontWeight: FontWeight.w600),
                           ),
                         ],
@@ -115,7 +115,7 @@ class _AirScreenState extends State<AirScreen> {
                                 padding: EdgeInsets.only(top: 2.0),
                               ),
                               Text(
-                                "10%",
+                                widget.air.pm25.toString() + "%",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
@@ -152,7 +152,7 @@ class _AirScreenState extends State<AirScreen> {
                                 padding: EdgeInsets.only(top: 2.0),
                               ),
                               Text(
-                                "12%",
+                                widget.air.pm10.toString() + "%",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
@@ -183,7 +183,7 @@ class _AirScreenState extends State<AirScreen> {
                   padding: EdgeInsets.only(top: 2.0),
                 ),
                 Text(
-                  "Warszawa",
+                  widget.air.station,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 18.0),
@@ -209,20 +209,19 @@ class _AirScreenState extends State<AirScreen> {
                   ClipRect(
                     child: Align(
                       alignment: Alignment.topLeft,
-                      heightFactor: 1,
-                      child: Image.asset("icons/danger-value-negative.png",
-                          scale: 0.9,
-                          color: Color.fromARGB(255, 226, 221, 221)),
+                      heightFactor: 1 - widget.air.aqi / 200.floor(),
+                      child: getDangeValueBottom(widget.air),
                     ),
                   ),
                   ClipRect(
                     child: Align(
                       alignment: Alignment.topLeft,
                       heightFactor: 1 - 0.4,
-                      child: Image.asset(
-                        "icons/danger-value.png",
-                        scale: 0.9,
-                      ),
+                      child: getDangeValueTop(widget.air),
+                      // Image.asset(
+                      //   "icons/danger-value.png",
+                      //   scale: 0.9,
+                      // ),
                     ),
                   )
                 ],
@@ -274,7 +273,7 @@ class _AirScreenState extends State<AirScreen> {
                               padding: EdgeInsets.only(left: 10),
                             ),
                             Text(
-                              "Mój tekst",
+                              widget.air.advice,
                               style: TextStyle(
                                   color: Color.fromARGB(255, 0, 0, 0),
                                   fontWeight: FontWeight.w800),
@@ -300,39 +299,69 @@ class _AirScreenState extends State<AirScreen> {
   LinearGradient getGradientByMood(AirQuality air) {
     if (air.isgood) {
       return LinearGradient(
-        begin: Alignment.centerRight,
+        begin: Alignment.topRight,
         end: Alignment.centerLeft,
         colors: [
-          Color.fromARGB(255, 171, 233, 158),
-          Color.fromARGB(255, 47, 187, 129),
+          Color.fromARGB(255, 83, 177, 113),
+          Color.fromARGB(255, 33, 114, 60),
         ],
       );
     } else if (air.isBad) {
       return LinearGradient(
-        begin: Alignment.centerRight,
-        end: Alignment.centerLeft,
+        begin: Alignment.topRight,
+        end: Alignment.center,
         colors: [
-          Color.fromARGB(255, 233, 158, 158),
-          Color.fromARGB(255, 187, 47, 47),
+          Color.fromARGB(255, 177, 89, 83),
+          Color.fromARGB(255, 114, 45, 33),
         ],
       );
     } else {
       return LinearGradient(
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter,
+        begin: Alignment.topRight,
+        end: Alignment.center,
         colors: [
-          Color.fromARGB(255, 233, 194, 158),
-          Color.fromARGB(255, 187, 122, 47),
+          Color.fromARGB(255, 233, 192, 158),
+          Color.fromARGB(255, 214, 137, 73),
         ],
       );
     }
   }
 
   getBackgroundTextCOlor(AirQuality air) {
-    if (air.isgood || air.isBad) {
-      return Colors.black;
-    } else {
+    if (air.isBad || air.isgood) {
       return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
+
+  getDangeValueBottom(AirQuality air) {
+    if (air.isgood) {
+      return Image.asset(
+        "icons/danger-value-negative.png",
+        scale: 0.9,
+      );
+    } else {
+      return Image.asset(
+        "icons/danger-value.png",
+        scale: 0.9,
+      );
+    }
+  }
+
+  getDangeValueTop(AirQuality air) {
+    if (air.isgood) {
+      return Image.asset(
+        "icons/danger-value-negative.png",
+        color: Color.fromARGB(255, 33, 114, 60),
+        scale: 0.9,
+      );
+    } else if (air.isBad) {
+      return Image.asset("icons/danger-value-negative.png",
+          color: Color.fromARGB(255, 114, 45, 33), scale: 0.9);
+    } else {
+      Image.asset("icons/danger-value-negative.png",
+          color: Color.fromARGB(255, 214, 137, 73), scale: 0.9);
     }
   }
 }
