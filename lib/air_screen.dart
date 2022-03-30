@@ -25,13 +25,7 @@ class _AirScreenState extends State<AirScreen> {
           Container(
             decoration: BoxDecoration(
               color: const Color(0xffffffff),
-              gradient: LinearGradient(
-                  begin: Alignment.centerRight,
-                  end: Alignment.centerLeft,
-                  colors: [
-                    Color.fromRGBO(161, 233, 158, 1),
-                    Color.fromARGB(255, 47, 187, 77),
-                  ]),
+              gradient: getGradientByMood(widget.air),
             ),
           ),
           Align(
@@ -45,7 +39,7 @@ class _AirScreenState extends State<AirScreen> {
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 14.0),
                       height: 1.2,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: getBackgroundTextCOlor(widget.air),
                       fontWeight: FontWeight.w700),
                 ),
                 Padding(
@@ -57,7 +51,7 @@ class _AirScreenState extends State<AirScreen> {
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 28.0),
                       height: 1.2,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: getBackgroundTextCOlor(widget.air),
                       fontWeight: FontWeight.w700),
                 ),
                 Padding(
@@ -77,7 +71,7 @@ class _AirScreenState extends State<AirScreen> {
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(fontSize: 45.0),
                                 height: 1.2,
-                                color: Color.fromARGB(255, 0, 0, 0),
+                                color: getBackgroundTextCOlor(widget.air),
                                 fontWeight: FontWeight.w700),
                           ),
                           Text(
@@ -86,7 +80,7 @@ class _AirScreenState extends State<AirScreen> {
                             style: GoogleFonts.lato(
                                 textStyle: TextStyle(fontSize: 14.0),
                                 height: 1.2,
-                                color: Color.fromARGB(255, 0, 0, 0),
+                                color: getBackgroundTextCOlor(widget.air),
                                 fontWeight: FontWeight.w600),
                           ),
                         ],
@@ -114,7 +108,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 16.0),
                                     height: 1.2,
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: getBackgroundTextCOlor(widget.air),
                                     fontWeight: FontWeight.w500),
                               ),
                               Padding(
@@ -126,7 +120,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
                                     height: 1.2,
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: getBackgroundTextCOlor(widget.air),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -136,7 +130,7 @@ class _AirScreenState extends State<AirScreen> {
                       VerticalDivider(
                         width: 0.0,
                         thickness: 1.0,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: getBackgroundTextCOlor(widget.air),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -151,7 +145,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 16.0),
                                     height: 1.2,
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: getBackgroundTextCOlor(widget.air),
                                     fontWeight: FontWeight.w500),
                               ),
                               Padding(
@@ -163,7 +157,7 @@ class _AirScreenState extends State<AirScreen> {
                                 style: GoogleFonts.lato(
                                     textStyle: TextStyle(fontSize: 20.0),
                                     height: 1.2,
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: getBackgroundTextCOlor(widget.air),
                                     fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -181,7 +175,7 @@ class _AirScreenState extends State<AirScreen> {
                     style: GoogleFonts.lato(
                         textStyle: TextStyle(fontSize: 14.0),
                         height: 1.2,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: getBackgroundTextCOlor(widget.air),
                         fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -194,7 +188,7 @@ class _AirScreenState extends State<AirScreen> {
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 18.0),
                       height: 1.2,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: getBackgroundTextCOlor(widget.air),
                       fontWeight: FontWeight.w900),
                 ),
                 Padding(
@@ -301,5 +295,44 @@ class _AirScreenState extends State<AirScreen> {
 
   bool havePermission() {
     return true;
+  }
+
+  LinearGradient getGradientByMood(AirQuality air) {
+    if (air.isgood) {
+      return LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromARGB(255, 171, 233, 158),
+          Color.fromARGB(255, 47, 187, 129),
+        ],
+      );
+    } else if (air.isBad) {
+      return LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        colors: [
+          Color.fromARGB(255, 233, 158, 158),
+          Color.fromARGB(255, 187, 47, 47),
+        ],
+      );
+    } else {
+      return LinearGradient(
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+        colors: [
+          Color.fromARGB(255, 233, 194, 158),
+          Color.fromARGB(255, 187, 122, 47),
+        ],
+      );
+    }
+  }
+
+  getBackgroundTextCOlor(AirQuality air) {
+    if (air.isgood || air.isBad) {
+      return Colors.black;
+    } else {
+      return Colors.white;
+    }
   }
 }
