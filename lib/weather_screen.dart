@@ -33,14 +33,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(padding: EdgeInsets.only(top: 45.0)),
+                Padding(padding: EdgeInsets.only(top: 100.0)),
                 Image(
                   image:
                       AssetImage("icons/${getIconByMood(widget.weather)}.png"),
                 ),
                 Padding(padding: EdgeInsets.only(top: 41.0)),
                 Text(
-                  "${DateFormat.MMMMEEEEd("pl").format(DateTime.now())}, ${widget.weather.weatherDescription} ",
+                  "${DateFormat.MMMMEEEEd("pl").format(
+                    DateTime.now(),
+                  )},\n${widget.weather.weatherDescription} ",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(fontSize: 16),
@@ -48,7 +50,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       color: Colors.white,
                       fontWeight: FontWeight.w400),
                 ),
-                Padding(padding: EdgeInsets.only(top: 12.0)),
+                Padding(padding: EdgeInsets.only(top: 18.0)),
                 Text(
                   "${widget.weather.temperature?.celsius!.floor().toString()}°C",
                   textAlign: TextAlign.center,
@@ -59,7 +61,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       fontWeight: FontWeight.w700),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
+                  padding: EdgeInsets.only(bottom: 40.0),
                   child: Text(
                     "Odczuwalna ${widget.weather.tempFeelsLike?.celsius!.floor().toString()}°C",
                     textAlign: TextAlign.center,
@@ -91,7 +93,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                     fontWeight: FontWeight.w500),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 2.0),
+                                padding: EdgeInsets.only(top: 5.0),
                               ),
                               Text(
                                 "${widget.weather.pressure?.floor().toString()}°C hPa",
@@ -128,7 +130,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                     fontWeight: FontWeight.w500),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 2.0),
+                                padding: EdgeInsets.only(top: 5.0),
                               ),
                               Text(
                                 "${widget.weather.windSpeed}°C m/s",
