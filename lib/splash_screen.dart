@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -87,30 +88,49 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    if (permissionDenied()) {
+    (checkPermission());
+  }
+
+  checkPermission() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => PermissionScreen()));
     } else {
       SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-        executedOnceAfterBuild();
+        executeOnceAfterBuild();
       });
     }
   }
 
-  bool permissionDenied() {
-    return false;
+  // pobieranie aktualnej lokalizacji, parametr desiredAccuracy: LocationAccuracy.best mówi o dokłądności lokalizacji,
+  // forceAndroidLocationManager: false - zawsze bedzie na androidzie działac
+  void executeOnceAfterBuild() async {
+    Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.lowest,
+            forceAndroidLocationManager: true,
+            timeLimit: Duration(seconds: 5))
+        .then((value) => {loadLocationData(value)})
+        .onError((error, stackTrace) => {
+              Geolocator.getLastKnownPosition(forceAndroidLocationManager: true)
+                  .then((value) => {loadLocationData(value)})
+            });
   }
 
-  void executedOnceAfterBuild() async {
+  loadLocationData(Position? value) async {
+    var lat = value?.latitude;
+    var lng = value?.longitude;
+    log(lat.toString() + "x" + lng.toString());
+
     WeatherFactory wf = new WeatherFactory("32a8b80c5dc1aa8453402fbb2f2dfde5",
         language: Language.POLISH);
-    Weather w = await wf.currentWeatherByCityName("Gdynia");
+    Weather w = await wf.currentWeatherByLocation(lat!, lng!);
 // sprawdzenie czy działa odpowiedz z serwera
     log(w.toJson().toString());
 
 // aby skorzystać z danych o informacji o powietrzu należy również w pubspec.yaml dodać paczkę http
-    var lat = 54.538317;
-    var lng = 18.470920;
+
     var keyword = "geo:$lat;$lng";
     String _endpoint = "https://api.waqi.info/feed/";
     var key = "58b73628df9c89797e1391bb18505b675a0f253c";

@@ -1,4 +1,7 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pogoda/main.dart';
 
@@ -79,14 +82,18 @@ class _PermissionScreenState extends State<PermissionScreen> {
                       ),
                       style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 168, 185, 241)),
-                      onPressed: () {
-// to do ask for permission
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SplashScreen(),
-                          ),
-                        );
+                      onPressed: () async {
+                        LocationPermission permission =
+                            await Geolocator.requestPermission();
+                        if (permission == LocationPermission.always ||
+                            permission == LocationPermission.whileInUse) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SplashScreen(),
+                            ),
+                          );
+                        }
                       },
                     ),
                   ))),
